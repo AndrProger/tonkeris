@@ -59,7 +59,6 @@ public class AllController {
     private Model aboutTapBlockNone(Model model){
         model.addAttribute("aboutTapBlock","display: none;");
         model.addAttribute("transportNowBlock","display: block;");
-
         return model;
     }
 }
