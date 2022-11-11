@@ -1,0 +1,31 @@
+<div th:fragment="header">
+    <header class="header">
+      <div class="header_logo">
+        <a href="#"><img th:src="@{../img/logo.png}" class="logo"> </a>
+      </div>
+
+      <div class="header_inner">
+        <div class="header_inner_top">
+          <a href="#" class="menu">Главное</a>
+        </div>
+        <div class="header_inner_bottom">
+          <div class="header_inner_bottom_item">
+            <div class="header_inner_left">
+              <p class="header_inner_text_left">Должность:</p>
+              <p class="header_inner_text_left">ФИО:</p>
+            </div>
+
+            <div class="header_inner_right">
+              <p class="header_inner_text_right" th:text="'Время: '+${dateNow.timeStr}">Время:--:--</p>
+              <p class="header_inner_text_right" th:text="'Дата: '+${dateNow.dateStr}">Дата:--.--.----</p>
+            </div>
+
+          </div>
+          <div class="header_inner_bottom_item">
+
+          </div>
+        </div>
+      </div>
+
+    </header>
+</div>

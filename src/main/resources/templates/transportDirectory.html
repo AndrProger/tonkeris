@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" th:href="@{/ccs/basic.css}" >
+<link rel="stylesheet" th:href="@{/ccs/transportDirectory.css}" >
+
+<script th:src="@{/js/script.js}"></script>
+
+<title>Типы транспорта</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<div th:insert="temp/nav :: nav "></div>
+<header th:insert="temp/header :: header "></header>
+
+<div class="vievPanel">
+  <div class="transport_table" >
+    <div class="transport_table_title">
+      <div class="transport_table_title_item">Типы транспорта</div>
+    </div>
+    <div id="rows">
+      <a th:each="typesAll:${typesAll}" class="transport_table_box" th:href="'/transportDirectory/'+${typesAll.id}" >
+        <div class="transport_table_item" th:text="${typesAll.name}">1</div>
+      </a>
+
+
+    </div>
+  </div>
+
+  <div class="form_block">
+    <form action="/transportDirectory" method="POST"  >
+      <div class="form_add block_form" >
+        <input type="text"  name="name" placeholder="Введите тип транспорта" class="form_type input_text">
+        <button name="add" type="submit" class="button_add button" >Добавить </button>
+      </div>
+    </form>
+    <form th:method="post" th:action="@{/transportDirectory/{id}(id=${typeEdit.getId()})}">
+      <div class="form_edit block_form" th:object="${typeEdit}">
+        <p class="info_text text_edit">
+          Что бы выбрать тип транспорта для редактирования нажмите на запись в таблице
+        </p>
+        <input type="text" name="nameEdit" placeholder="" class="input_edit input_text" th:value="${typeEdit.getName()}" >
+        <div class="btns_delete_edit">'
+
+            <button name="edit" type="submit" th:style="${styleEditDelBtn}" class="button_edit button" >Изменить</button>
+
+
+          <button name="delete" type="submit" th:style="${styleEditDelBtn}"  class="button_delete button" >Удалить</button>
+        </div>
+
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+<div id="openModal" th:style="${message.display+'pointer-events: auto;'}" class="modalDialog"  >
+  <div>
+    <a onclick="clickClose()" title="Закрыть" class="close">X</a>
+    <h2 class="titleMessage" th:text="${message.title}"></h2>
+    <p th:text="${message.text}"></p>
+    <p></p>
+  </div>
+</div>
+
+</body>
+</html>

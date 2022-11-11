@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" th:href="@{/ccs/basic.css}" >
+<link rel="stylesheet" th:href="@{/ccs/transportViev.css}" >
+<title>Просмотр приема</title>
+<script th:src="@{/js/script.js}"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<script src="js/script.js"></script>
+</head>
+
+<body>
+<div th:insert="temp/nav :: nav "></div>
+<header th:insert="temp/header :: header "></header>
+
+<div class="vievPanel">
+  <div class="transport_table" >
+    <div class="transport_table_title">
+      <div class="transport_table_title_item">Хозяйство</div>
+      <div class="transport_table_title_item">Дата</div>
+      <div class="transport_table_title_item">Тоннаж</div>
+      <div class="transport_table_title_item">Базовый </div>
+      <div class="transport_table_title_item">Дополнительный </div>
+      <div class="transport_table_title_item">ИДК </div>
+
+    </div>
+    <div id="rows">
+      <a th:each="el:${rec}" class="transport_table_box" href="###">
+        <div class="transport_table_item" th:text="${el.id_farms}">1</div>
+        <div class="transport_table_item" th:text="${el.date}">1</div>
+        <div class="transport_table_item" th:text="${el.kg}">1</div>
+        <div class="transport_table_item" th:text="${el.id_basic}">1</div>
+        <div class="transport_table_item" th:text="${el.id_additional}">1</div>
+        <div class="transport_table_item" th:text="${el.id_idk}">1</div>
+      </a>
+
+
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+</body>
+</html>

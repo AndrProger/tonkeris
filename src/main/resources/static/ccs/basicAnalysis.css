@@ -1,0 +1,76 @@
+.block_analysis_label{
+
+    margin: 0 auto;
+}
+.text_analysis_label{
+
+    background-color:#009999 ;
+    text-align: center;
+    font-size: 30px;
+    padding: 0;
+}
+.label_input{
+    font-size: 25px;
+    color: black;
+    padding: 10px 20px 0 20px ;
+}
+.checkbox{
+    display: grid;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.1;
+
+    grid-template-columns: 1em auto;
+    gap: 0.2em;
+
+    margin-left: 10px;
+
+    transition: transform .2s linear;
+}
+.checkbox:hover{
+    transform: scale(1.5);
+}
+.label_check{
+    color: rgb(48, 48, 48);
+    font-style: italic;
+    padding-left: 10px;
+    line-height: 1.9;
+}
+.imput_check_block{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.analysis_param_block{
+    display: flex;
+    justify-content:space-between ;
+    align-items: baseline;
+}
+.input_text{
+    max-width: 100px;
+}
+.select_size
+{
+    max-width: 200px;
+    transition: transform .2s linear;
+}
+.select:hover{
+    transform: scale(1.1);
+}
+.button{
+    margin: 20px auto;
+}
+.about_tap{
+    padding: 20px;
+    background-color: #be06068b;
+    color: black;
+    border-radius: 20px;
+}
+.transport_now{
+    padding: 20px;
+    background-color: #0099998c;
+    color: black;
+    border-radius: 20px;
+    margin: 10px auto;
+}

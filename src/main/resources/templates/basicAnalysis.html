@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/ccs/basicAnalysis.css}" >
+    <link rel="stylesheet" th:href="@{/ccs/basic.css}" >
+    <link rel="stylesheet" href="css/basicAnalysis.css">
+    <link rel="stylesheet" href="css/basic.css">
+
+    <title>Регистрация транспорта</title>
+    <script th:src="@{/js/script.js}"></script>
+    <!--    <script th:src="js/script.js"></script>-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <script src="js/script.js"></script>
+</head>
+<body onload=" checkScroll()">
+    <div th:insert="temp/nav :: nav "></div>
+    <header th:insert="temp/header :: header "></header>
+
+    <div class="block_analysis_label">
+        <p class="text_analysis_label">
+            Базовый анализ
+        </p>
+    </div>
+
+    <div class="vievPanel">
+        <div th:insert="temp/tableTransportNow :: tableTransportNow "></div>
+        <div class="form_block block_form">
+
+            <div class="about_tap" th:style="${aboutTapBlock}">
+                Для выбора транспорта выберите его из таблице и кликните ЛКМ
+            </div>
+
+            <div class="transport_now" th:style="${transportNowBlock}">
+                Гос номер: <span th:text="${transportNow.num}">------</span>
+            </div>
+            <form th:method="post" th:action="@{/basicAnalysis/{id}(id=${transportNow.getId()})}" >
+
+
+
+                <div class="analysis_param_block" >
+
+                    <label for="input_humidity" class="label_input block_text_select"> Влажность:</label>
+                    <div class="imput_check_block">
+                        <input id="input_humidity" class="form_num input_text analysis_param" type="number" name="humidity" min="0" max="100" step="0.1" value="0">
+
+                        <label for="checkbox_humidity"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_humidity" name="humidityCheck" class="checkbox"  type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+
+                </div>
+                <div class="analysis_param_block">
+                    <label for="input_natura" class="label_input block_text_select"> Натура:</label>
+                    <div class="imput_check_block">
+                        <input id="input_natura"   class="form_num input_text"  type="number" name="natura" min="1" max="5000" value="0">
+
+                        <label for="checkbox_natura"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_natura" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+
+                <div class="analysis_param_block">
+                    <label for="input_vitreous" class="label_input block_text_select"> Стекловидность:</label>
+                    <div class="imput_check_block">
+                        <select id="input_vitreous" class="select select_size" name="vitreous">
+                            <option value="Мучнистое">Мучнистое</option>
+                            <option value="Частично стекловидное">Частично стекловидное</option>
+                            <option value="Cтекловидное">Cтекловидное</option>
+                        </select>
+
+                        <label for="checkbox_vitreous"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_vitreous" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+
+                <div class="analysis_param_block">
+                    <label for="input_class" class="label_input block_text_select"> Класс:</label>
+                    <div class="imput_check_block">
+                        <input id="input_class"   class="form_num input_text"  type="number" name="classGrain" min="1" max="5" value="5">
+
+                        <label for="checkbox_class"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_class" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+                <div class="analysis_param_block">
+                    <label for="input_type" class="label_input block_text_select"> Тип:</label>
+                    <div class="imput_check_block">
+                        <select id="input_type" class=" select type" name="type">
+                            <option value="Пшеница">Пшеница</option>
+                            <option value="Овес">Овес</option>
+                        </select>
+
+                        <label for="checkbox_type"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_type" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+                <button type="submit" class="button_add button" >Добавить </button>
+
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

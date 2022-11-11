@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/ccs/transportAdd.css}" >
+    <link rel="stylesheet" th:href="@{/ccs/basic.css}" >
+    <link rel="stylesheet" href="css/transportAdd.css">
+    <link rel="stylesheet" href="css/basic.css">
+
+    <title>Регистрация транспорта</title>
+    <script th:src="@{/js/script.js}"></script>
+<!--    <script th:src="js/script.js"></script>-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <script src="js/script.js"></script>
+</head>
+<body onload=" checkScroll()">
+<div th:insert="temp/nav :: nav "></div>
+<header th:insert="temp/header :: header "></header>
+
+<div class="vievPanel">
+    <div th:insert="temp/tableTransportNow :: tableTransportNow "></div>
+
+    <div class="form_block block_form">
+        <form action="/transportAdd" method="post">
+            <input type="text" name="num" placeholder="Введите гос номер 000XXX01" class="form_num input_text">
+
+            <div class="cont_select ">
+                <select class=" select type" name="type" >
+                    <option th:each="el:${transportsType}" th:text="${el.name}" >Камаз</option>
+                </select>
+
+                <select onchange="change(this)" id="trailer_selection" class=" select type">
+                    <option value="1">Без прицепа</option>
+                    <option value="2">С прицепом</option>
+                </select>
+            </div>
+            <input style="display:none" id="trailer_num" type="text" name="num_trail" placeholder="Гос номер прицепа 000XXX01" class="form_num_trailer input_text">
+            <button type="submit" class="button_add button" >Добавить </button>
+        </form>
+    </div>
+</div>
+
+
+</body>

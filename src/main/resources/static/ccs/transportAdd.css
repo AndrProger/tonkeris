@@ -1,0 +1,39 @@
+
+
+
+
+/* form */
+.form_block{
+    margin: 80px 80px 100px 0;
+
+}
+.form_num{
+    width: 500px;
+}
+
+.cont_select{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.4s
+}
+.cont_select:hover{
+    transform: scale(1.1);
+}
+.type{
+
+    margin: 0 20px;
+    width: 200px;
+
+}
+
+.form_num_trailer{
+    margin-top: 50px;
+    width: 500px;
+}
+.form_num_trailer:hover{
+    transform: scale(1.1);
+}
+.button_add{
+    margin: 30px auto   ;
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/ccs/basicAnalysis.css}" >
+    <link rel="stylesheet" th:href="@{/ccs/basic.css}" >
+    <link rel="stylesheet" href="css/basicAnalysis.css">
+    <link rel="stylesheet" href="css/basic.css">
+
+    <title>Регистрация транспорта</title>
+    <script th:src="@{/js/script.js}"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <script src="js/script.js"></script>
+</head>
+<body onload=" checkScroll()">
+    <div th:insert="temp/nav :: nav "></div>
+    <header th:insert="temp/header :: header "></header>
+
+    <div class="block_analysis_label">
+        <p class="text_analysis_label">
+            Базовый анализ
+        </p>
+    </div>
+    <div class="vievPanel">
+        <div th:insert="temp/tableTransportNow :: tableTransportNow "></div>
+        <div class="form_block block_form">
+
+            <div class="about_tap" th:style="${aboutTapBlock}">
+                Для выбора транспорта выберите его из таблице и кликните ЛКМ
+            </div>
+
+            <div class="transport_now" th:style="${transportNowBlock}">
+                Гос номер: <span th:text="${transportNow.num}">------</span>
+            </div>
+            <form th:method="post" th:action="@{/additionalAnalysis/{id}(id=${transportNow.getId()})}" >
+                <div class="analysis_param_block" >
+
+                    <label for="input_temperature" class="label_input block_text_select"> Температура:</label>
+                    <div class="imput_check_block">
+                        <input id="input_temperature" class="form_num input_text analysis_param" type="number" name="quantity" min="-1000" max="1000"  value="0">
+
+                        <label for="checkbox_temperature"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_temperature" class="checkbox"  type="checkbox" onclick="checkBoxCheck(this)">
+
+                    </div>
+
+
+                </div>
+                <div class="analysis_param_block">
+                    <label for="input_filminess" class="label_input block_text_select"> Пленчатость:</label>
+                    <div class="imput_check_block">
+                        <input id="input_filminess"   class="form_num input_text"  type="number" name="quantity" min="0" max="10000" value="0">
+
+                        <label for="checkbox_filminess"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_filminess" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+
+                <div class="analysis_param_block">
+                    <label for="input_clogging" class="label_input block_text_select"> Засореность:</label>
+                    <div class="imput_check_block">
+                        <input id="input_clogging"   class="form_num input_text"  type="number" name="quantity" min="0" max="100" value="0" step="0.1">
+
+                        <label for="checkbox_clogging"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_clogging" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+
+                <div class="analysis_param_block">
+                    <label for="input_germination" class="label_input block_text_select"> Всхожесть:</label>
+                    <div class="imput_check_block">
+                        <input id="input_germination"   class="form_num input_text"  type="number" name="quantity" min="0" max="10000" value="0" >
+
+                        <label for="checkbox_germination"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_germination" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+                <div class="analysis_param_block">
+                    <label for="input_germinationEnergy" class="label_input block_text_select"> Энергия проростания:</label>
+                    <div class="imput_check_block">
+                        <input id="input_germinationEnergy"   class="form_num input_text"  type="number" name="quantity" min="0" max="10000" value="0">
+
+                        <label for="checkbox_germinationEnergy"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_germinationEnergy" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+
+                <div class="analysis_param_block">
+                    <label for="input_ashContent" class="label_input block_text_select"> Зольность:</label>
+                    <div class="imput_check_block">
+                        <input id="input_ashContent"   class="form_num input_text"  type="number" name="quantity" min="0" max="10000" value="0">
+
+                        <label for="checkbox_ashContent"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_ashContent" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+
+                <div class="analysis_param_block">
+                    <label for="input_infection" class="label_input block_text_select"> Зараженность:</label>
+                    <div class="imput_check_block">
+                        <input id="input_infection"   class="form_num input_text"  type="number" name="quantity" min="0" max="10000" value="0" >
+
+                        <label for="checkbox_infection"  class="label_check block_text_select" >Не учитывать  </label>
+                        <input id="checkbox_infection" class="checkbox" type="checkbox" onclick="checkBoxCheck(this)" >
+
+                    </div>
+
+                </div>
+                <button th:attr="disabled='disabled'" type="submit" class="button_add button" >Добавить </button>
+            </form>
+        </div>
+    </div>
+</body>

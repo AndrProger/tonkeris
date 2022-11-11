@@ -1,0 +1,18 @@
+<div th:fragment="tableTransportNow">
+  <div id="table" class="transport_table">
+    <div class="transport_table_title">
+      <div class="transport_table_title_item">Гос номер</div>
+      <div class="transport_table_title_item">Прицеп</div>
+      <div class="transport_table_title_item">Время</div>
+      <div class="transport_table_title_item">Дата</div>
+    </div>
+    <div id="rows">
+      <a th:each="allTransportsNow:${allTransportsNow}" class="transport_table_box" th:href="'/basicAnalysis/'+${allTransportsNow.id}">
+        <div class="transport_table_item" th:text="${allTransportsNow.num}">1</div>
+        <div class="transport_table_item" th:text="${allTransportsNow.numTrail}">2</div>
+        <div class="transport_table_item" th:text="${allTransportsNow.getTime()}">3</div>
+        <div class="transport_table_item" th:text="${allTransportsNow.getDate()}">4</div>
+      </a>
+    </div>
+  </div>
+</div>
