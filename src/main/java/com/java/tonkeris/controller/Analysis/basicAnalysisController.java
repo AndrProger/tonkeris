@@ -37,8 +37,7 @@ public class basicAnalysisController {
         DateTimeHeader.getDateModel(model);
         allController.getTransportTableModel(model);
 
-        model.addAttribute("aboutTapBlock","display: block;");
-        model.addAttribute("transportNowBlock","display: none;");
+        allController.aboutTapBlockBlock(model);
 
         return "basicAnalysis";
     }
@@ -51,8 +50,7 @@ public class basicAnalysisController {
 
         allController.getTransportTableModel(model,id);
 
-        model.addAttribute("aboutTapBlock","display: none;");
-        model.addAttribute("transportNowBlock","display: block;");
+        allController.aboutTapBlockNone(model);;
 
 
         return "basicAnalysis";

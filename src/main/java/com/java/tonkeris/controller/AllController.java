@@ -51,12 +51,12 @@ public class AllController {
         model.addAttribute("allTransportsNow",allTransportsNow);
         return model;
     }
-    private Model aboutTapBlockBlock(Model model){
+    public Model aboutTapBlockBlock(Model model){
         model.addAttribute("aboutTapBlock","display: block;");
         model.addAttribute("transportNowBlock","display: none;");
         return model;
     }
-    private Model aboutTapBlockNone(Model model){
+    public Model aboutTapBlockNone(Model model){
         model.addAttribute("aboutTapBlock","display: none;");
         model.addAttribute("transportNowBlock","display: block;");
 
