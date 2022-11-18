@@ -18,8 +18,7 @@ public class additionalAnalysisController {
         DateTimeHeader.getDateModel(model);
         allController.getTransportTableModel(model);
 
-        model.addAttribute("aboutTapBlock","display: block;");
-        model.addAttribute("transportNowBlock","display: none;");
+        allController.aboutTapBlockBlock(model);
 
         return "additionalAnalysis";
     }

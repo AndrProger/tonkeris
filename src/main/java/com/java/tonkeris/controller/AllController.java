@@ -43,10 +43,6 @@ public class AllController {
     }
     private  Model addAllTransportsNow(Model model){
         Iterable<TransportNow>allTransportsNow= transportNowRepository.findAll();
-        for (TransportNow t:allTransportsNow
-             ) {
-            System.out.println(t.getNum());
-        }
 
         model.addAttribute("allTransportsNow",allTransportsNow);
         return model;

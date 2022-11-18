@@ -676,3 +676,16 @@ body {
 .close:hover {
     cursor: pointer;
     background: #00d9ff; }
+.transport_now{
+    display: flex;
+    justify-content: space-around;
+    background-color: #0099998c;
+    color: black;
+    border-radius: 20px;
+    margin: 10px auto;
+}
+.transport_now_inner{
+    border-radius: 20px;
+    padding: 15px;
+    background-color: #b6f7f730;
+}
