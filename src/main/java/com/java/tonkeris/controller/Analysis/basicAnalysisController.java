@@ -39,6 +39,9 @@ public class basicAnalysisController {
 
         allController.aboutTapBlockBlock(model);
         getStatysAnalys(model);
+
+        model.addAttribute("analysis",new BasicAnalysis());
+        model.addAttribute("status","Отсутствует");
         return "basicAnalysis";
     }
     @GetMapping("/basicAnalysis/{id}")
@@ -52,7 +55,20 @@ public class basicAnalysisController {
 
         allController.aboutTapBlockNone(model);;
         getStatysAnalys(model);
+        Long idBasicAnalysis=transportNowRepository.getIdBasicFromIdTransport(id);
 
+        if(idBasicAnalysis!=null){
+            allController.analysisInfoBlock(model);
+            BasicAnalysis basicAnalysisNow=basicAnalysisRepository.findByIdOnlyOne(idBasicAnalysis);
+            allController.btnDisabled(model);
+            model.addAttribute("analysis",basicAnalysisNow);
+            model.addAttribute("status","Проведен");
+        }
+        else {
+            allController.analysisInfoNone(model);
+            model.addAttribute("analysis",new BasicAnalysis());
+            model.addAttribute("status","Отсутствует");
+        }
         return "basicAnalysis";
     }
 
@@ -77,7 +93,6 @@ public class basicAnalysisController {
         grainReception.ifPresent(grainReceptionList::add);
         GrainReception nowGrainReception=grainReceptionList.get(0);
 
-        System.out.println("baId="+basicAnalysis.getId());
         nowGrainReception.setId_basic(basicAnalysis.getId());
         grainReceptionRepository.save(nowGrainReception);
         return "redirect:/basicAnalysis";

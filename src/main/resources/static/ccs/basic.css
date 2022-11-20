@@ -98,8 +98,8 @@ body{
 /* vievPanel */
 .vievPanel{
     margin: 30px 90px ;
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
 }
 
 /* Table */
@@ -202,11 +202,22 @@ body{
     padding: 5px 10px;
     transition: 0.5s
 }
-.button:hover{
+.button:enabled:hover{
     border: 1px solid silver;
     transform: scale(1.3);
     background-color:#00d3d3;
     color:#009999
+}
+.button:disabled{
+    cursor: pointer;
+    color: #333;
+    font-size: 30px;
+    display: block  ;
+    background-color: #949494;
+    border: 0;
+    border-radius: 15px;
+    padding: 5px 10px;
+    transition: 0.5s
 }
 
 .info_text{
@@ -675,12 +686,14 @@ body {
 
 .close:hover {
     cursor: pointer;
-    background: #00d9ff; }
+    background: #00d9ff;
+}
+
 .transport_now{
-    display: flex;
     justify-content: space-around;
     background-color: #0099998c;
     color: black;
+    padding: 20px;
     border-radius: 20px;
     margin: 10px auto;
 }
@@ -688,4 +701,13 @@ body {
     border-radius: 20px;
     padding: 15px;
     background-color: #b6f7f730;
+
+}
+.transport_now_inner_boreder{
+    background-color: rgba(51, 51, 51, 0);
+    border: 0;
+    height: 1px;
+    margin: 3px 10px;
+    display: block;
+
 }

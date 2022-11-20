@@ -25,7 +25,7 @@ public class TransportNowDopAnalysis   {
             return ("Нет");
         }
         else
-            return("Был"+id_analysis);
+            return("Был");
     }
 
     public TransportNowDopAnalysis(Long id,String num, String type, String numTrail, Date actionDate, Long id_grainReception, Long id_analysis) {
