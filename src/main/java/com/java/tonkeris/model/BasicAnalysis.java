@@ -10,8 +10,8 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class BasicAnalysis {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -22,6 +22,18 @@ public class BasicAnalysis {
     private String vitreous;
     private Integer classGrain;
     private String type;
+
+    public BasicAnalysis( Double humidity, Double natura, String vitreous, Integer classGrain, String type) {
+        this.id = id;
+        this.humidity = humidity;
+        this.natura = natura;
+        this.vitreous = vitreous;
+        this.classGrain = classGrain;
+        this.type = type;
+    }
+
+    public BasicAnalysis() {
+    }
 
     @Override
     public String toString() {

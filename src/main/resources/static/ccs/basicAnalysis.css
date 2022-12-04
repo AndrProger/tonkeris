@@ -3,7 +3,6 @@
     margin: 0 auto;
 }
 .text_analysis_label{
-
     background-color:#009999 ;
     text-align: center;
     font-size: 30px;
@@ -31,6 +30,7 @@
     transform: scale(1.5);
 }
 .label_check{
+    margin-left: 10px;
     color: rgb(48, 48, 48);
     font-style: italic;
     padding-left: 10px;
@@ -52,7 +52,7 @@
 }
 .select_size
 {
-    max-width: 200px;
+    max-width: 150px;
     transition: transform .2s linear;
 }
 .select:hover{
@@ -66,11 +66,4 @@
     background-color: #be06068b;
     color: black;
     border-radius: 20px;
-}
-.transport_now{
-    padding: 20px;
-    background-color: #0099998c;
-    color: black;
-    border-radius: 20px;
-    margin: 10px auto;
 }

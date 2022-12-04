@@ -43,10 +43,6 @@ public class AllController {
     }
     private  Model addAllTransportsNow(Model model){
         Iterable<TransportNow>allTransportsNow= transportNowRepository.findAll();
-        for (TransportNow t:allTransportsNow
-             ) {
-            System.out.println(t.getNum());
-        }
 
         model.addAttribute("allTransportsNow",allTransportsNow);
         return model;
@@ -54,12 +50,27 @@ public class AllController {
     public Model aboutTapBlockBlock(Model model){
         model.addAttribute("aboutTapBlock","display: block;");
         model.addAttribute("transportNowBlock","display: none;");
+        btnDisabled(model);
         return model;
     }
     public Model aboutTapBlockNone(Model model){
         model.addAttribute("aboutTapBlock","display: none;");
         model.addAttribute("transportNowBlock","display: block;");
 
+
         return model;
+    }
+    public  Model btnDisabled(Model model){
+        model.addAttribute("btnEnable",true);
+        return model;
+    }
+    public Model analysisInfoBlock(Model model ){
+        model.addAttribute("analysisInfo","display: block;");
+        btnDisabled(model);
+        return  model;
+    }
+    public Model analysisInfoNone(Model model ){
+        model.addAttribute("analysisInfo","display: none;");
+        return  model;
     }
 }

@@ -42,10 +42,27 @@
             <div class="about_tap" th:style="${aboutTapBlock}">
                 Для выбора транспорта выберите его из таблице и кликните ЛКМ
             </div>
-
             <div class="transport_now" th:style="${transportNowBlock}">
-                Гос номер: <span th:text="${transportNow.num}">------</span>
+
+                <div class="transport_now_inner" th:text="'Гос номер:'+${transportNow.num}">Гос номер:------</div>
+                <hr class="transport_now_inner_boreder">
+                <div class="transport_now_inner" th:text="'Стаутус анализа: '+${status}">Стаутус анализа:-----</div>
+                <hr class="transport_now_inner_boreder">
+                <div th:style="${analysisInfo}">
+                    <hr class="transport_now_inner_boreder">
+                    <div class="transport_now_inner" th:text="'Влажность: '+${analysis.humidity}">Влажность:-----</div>
+                    <hr class="transport_now_inner_boreder">
+                    <div class="transport_now_inner" th:text="'Натура: '+${analysis.natura}">Натура:-----</div>
+                    <hr class="transport_now_inner_boreder" >
+                    <div class="transport_now_inner" th:text="'Стекловидность: '+${analysis.vitreous}">Стекловидность:-----</div>
+                    <hr class="transport_now_inner_boreder">
+                    <div class="transport_now_inner" th:text="'Класс: '+${analysis.classGrain}">Класс:-----</div>
+                    <hr class="transport_now_inner_boreder">
+                    <div class="transport_now_inner" th:text="'Класс: '+${analysis.type}">Тип:-----</div>
+                </div>
             </div>
+
+
             <form th:method="post" th:action="@{/basicAnalysis/{id}(id=${transportNow.getId()})}" >
 
 
@@ -116,7 +133,7 @@
                     </div>
 
                 </div>
-                <button type="submit" class="button_add button" >Добавить </button>
+                <button  type="submit" class="button_add button"  th:disabled="${btnEnable}">Добавить </button>
 
 
             </form>

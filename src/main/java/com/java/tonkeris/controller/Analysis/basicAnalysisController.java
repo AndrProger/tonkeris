@@ -5,7 +5,7 @@ import com.java.tonkeris.message.DateTimeHeader;
 import com.java.tonkeris.model.BasicAnalysis;
 import com.java.tonkeris.model.GrainReception;
 import com.java.tonkeris.model.TransportNow;
-import com.java.tonkeris.model.TypeTransportDir;
+import com.java.tonkeris.model.dopModel.TransportNowDopAnalysis;
 import com.java.tonkeris.repository.BasicAnalysisRepository;
 import com.java.tonkeris.repository.GrainReceptionRepository;
 import com.java.tonkeris.repository.TransportNowRepository;
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -38,7 +38,10 @@ public class basicAnalysisController {
         allController.getTransportTableModel(model);
 
         allController.aboutTapBlockBlock(model);
+        getStatysAnalys(model);
 
+        model.addAttribute("analysis",new BasicAnalysis());
+        model.addAttribute("status","Отсутствует");
         return "basicAnalysis";
     }
     @GetMapping("/basicAnalysis/{id}")
@@ -51,8 +54,21 @@ public class basicAnalysisController {
         allController.getTransportTableModel(model,id);
 
         allController.aboutTapBlockNone(model);;
+        getStatysAnalys(model);
+        Long idBasicAnalysis=transportNowRepository.getIdBasicFromIdTransport(id);
 
-
+        if(idBasicAnalysis!=null){
+            allController.analysisInfoBlock(model);
+            BasicAnalysis basicAnalysisNow=basicAnalysisRepository.findByIdOnlyOne(idBasicAnalysis);
+            allController.btnDisabled(model);
+            model.addAttribute("analysis",basicAnalysisNow);
+            model.addAttribute("status","Проведен");
+        }
+        else {
+            allController.analysisInfoNone(model);
+            model.addAttribute("analysis",new BasicAnalysis());
+            model.addAttribute("status","Отсутствует");
+        }
         return "basicAnalysis";
     }
 
@@ -77,9 +93,14 @@ public class basicAnalysisController {
         grainReception.ifPresent(grainReceptionList::add);
         GrainReception nowGrainReception=grainReceptionList.get(0);
 
-        System.out.println("baId="+basicAnalysis.getId());
         nowGrainReception.setId_basic(basicAnalysis.getId());
         grainReceptionRepository.save(nowGrainReception);
         return "redirect:/basicAnalysis";
+    }
+    public Model getStatysAnalys(Model model){
+
+        List<TransportNowDopAnalysis> list =transportNowRepository.getTransportNowByDopAnalysis();
+        model.addAttribute("transportNowDopAnalysis",list);
+        return model;
     }
 }

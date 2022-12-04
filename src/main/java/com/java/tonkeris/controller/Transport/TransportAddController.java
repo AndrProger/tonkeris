@@ -44,10 +44,10 @@ public class TransportAddController {
     public String TransportAddPost(@RequestParam String num,@RequestParam String type, @RequestParam String num_trail, Model model) {
 
         GrainReception grainReception =new GrainReception();
-        System.out.println(grainReception);
         grainReceptionRepository.save(grainReception);
-        System.out.println(grainReception);
         TransportNow transport=new TransportNow(num,type,num_trail, grainReception.getId());
+
+        System.out.println(transport.toString());
         transportNowRepository.save(transport);
         return "redirect:/transportAdd";
     }
