@@ -47,3 +47,27 @@ function checkBoxCheck(elem){
     }
 
 }
+function checkBoxCheckTable(elem){
+    strId=elem.id
+
+    finalId="table_"+strId;
+    if(elem.checked){
+        el=document.getElementById(finalId);
+        el.style.display = 'flex';
+
+
+
+
+    }
+    else{
+        el=document.getElementById(finalId);
+        el.style.display = 'none';
+    }
+}
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}

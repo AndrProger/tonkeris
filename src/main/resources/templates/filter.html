@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/ccs/filter.css}" >
+  <link rel="stylesheet" th:href="@{/ccs/basic.css}" >
+
+
+  <title>Регистрация транспорта</title>
+  <script th:src="@{/js/script.js}"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="js/script.js"></script>
+</head>
+<body onload=" checkScroll()">
+<div th:insert="temp/nav :: nav "></div>
+<header th:insert="temp/header :: header "></header>
+<div class="boxFilterTable">
+  <div class="filter">
+    <div class="acor-container">
+      <form action="/filter" method="get" >
+        <input class="checkbox_acor" type="checkbox"  id="chacor1" checked="checked" />
+        <label class="label_acor" for="chacor1">Базовый анализ</label>
+        <div class="acor-body">
+          <div class="checkbox">
+            <input class="checkbox_value" type="checkbox" id="humidity" onclick="checkBoxCheckTable(this)" >
+            <label class="label_value" for="humidity"  > Влажность </label>
+            <div class="filter_input">
+              <span>От</span>
+              <input  class="form_num filter_input_text " type="number" name="byhumidity" min="0" max="100" step="0.1" value="0">
+              <span>До</span>
+              <input  class="form_num filter_input_text " type="number" name="tohumidity" min="0" max="100" step="0.1" value="100">
+              <input class="checkbox_value" type="checkbox" id="filter_humidity" name="humidity_filtr" value="true">
+              <label class="label_value" for="filter_humidity"    > Фильтр </label>
+            </div>
+
+          </div>
+          <div class="checkbox">
+            <input class="checkbox_value" type="checkbox" id="natura" onclick="checkBoxCheckTable(this)">
+            <label class="label_value" for="natura"  > Натура </label>
+            <div class="filter_input">
+              <span>От</span>
+              <input    class="form_num filter_input_text "  type="number" name="bynatura" min="0" max="5000" value="0">
+              <span>До</span>
+              <input    class="form_num filter_input_text "  type="number" name="tonatura" min="0" max="5000" value="5000">
+              <input class="checkbox_value" type="checkbox" id="filter_natura"  name="natura_filtr" value="true">
+              <label class="label_value" for="filter_natura"   > Фильтр </label>
+            </div>
+
+          </div>
+          <div class="checkbox">
+            <input class="checkbox_value" type="checkbox" id="vitreous" onclick="checkBoxCheckTable(this)">
+            <label class="label_value" for="vitreous"  > Стекловидность </label>
+            <div class="filter_input">
+              <select  class=" select_size " name="vitreous">
+                <option value="Мучнистое">Мучнистое</option>
+                <option value="Частично стекловидное">Частично стекловидное</option>
+                <option value="Cтекловидное">Cтекловидное</option>
+              </select>
+              <div>
+                <input class="checkbox_value" type="checkbox" id="filter_vitreous" name="vitreous_filtr" value="true" >
+                <label class="label_value" for="filter_vitreous"   > Фильтр </label>
+              </div>
+
+            </div>
+          </div>
+          <div class="checkbox">
+            <input class="checkbox_value" type="checkbox" id="class" onclick="checkBoxCheckTable(this)">
+            <label class="label_value" for="class"  > Класс </label>
+            <div class="filter_input">
+              <span>От</span>
+              <input class=" form_num filter_input_text"  type="number" name="byclass" min="1" max="5" value="1">
+              <span>До</span>
+              <input class=" form_num filter_input_text"  type="number" name="toclass" min="1" max="5" value="5">
+
+
+              <div>
+                <input class="checkbox_value" type="checkbox" id="filter_class" name="class_filtr" value="true" >
+                <label class="label_value" for="filter_class"   > Фильтр </label>
+              </div>
+
+            </div>
+          </div>
+          <div class="checkbox">
+            <input class="checkbox_value" type="checkbox" id="type" onclick="checkBoxCheckTable(this)">
+            <label class="label_value" for="type"  > Тип </label>
+            <div class="filter_input">
+              <select id="input_type" class="  select_size" name="type">
+                <option value="Пшеница">Пшеница</option>
+                <option value="Овес">Овес</option>
+              </select>
+              <div>
+                <input class="checkbox_value" type="checkbox" id="filter_type" name="type_filtr" value="true"   >
+                <label class="label_value" for="filter_type"   > Фильтр </label>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <button name="update"  type="submit" class= "button button_update" >Обновить </button>
+      </form>
+
+
+
+
+    </div>
+
+
+  </div>
+  <div class="table">
+    <div id="table_humidity" class="table_item">
+      <div class="table_item_header">
+        Влажность
+      </div>
+      <div  class="table_item_body">
+        <div class="table_item_body_item" th:each="basicAnalysis:${basicAnalysis}" th:text="${basicAnalysis.humidity} ?: 'Отсутствует' ">
+          тело
+        </div>
+
+
+      </div>
+    </div>
+
+    <div id="table_natura" class="table_item">
+      <div class="table_item_header">
+        Натура
+      </div>
+      <div class="table_item_body">
+        <div class="table_item_body_item" th:each="basicAnalysis:${basicAnalysis}" th:text="${basicAnalysis.natura} ?: 'Отсутствует' ">
+          тело
+        </div>
+      </div>
+
+
+    </div>
+
+    <div id="table_vitreous" class="table_item">
+      <div class="table_item_header">
+        Стекловидность
+      </div>
+      <div class="table_item_body">
+        <div class="table_item_body_item" th:each="basicAnalysis:${basicAnalysis}" th:text="${basicAnalysis.vitreous} ?: 'Отсутствует' ">
+          тело
+        </div>
+
+
+      </div>
+    </div>
+
+    <div id="table_class" class="table_item">
+      <div class="table_item_header">
+        Класс
+      </div>
+      <div class="table_item_body">
+        <div class="table_item_body_item" th:each="basicAnalysis:${basicAnalysis}" th:text="${basicAnalysis.classGrain} ?: 'Отсутствует' ">
+          тело
+        </div>
+
+
+      </div>
+    </div>
+
+    <div id="table_type" class="table_item">
+      <div class="table_item_header">
+        Тип
+      </div>
+      <div class="table_item_body">
+        <div class="table_item_body_item"  th:each="basicAnalysis:${basicAnalysis}" th:text="${basicAnalysis.type} ?: 'Отсутствует' ">
+          тело
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
